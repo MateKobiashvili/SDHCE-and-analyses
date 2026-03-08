@@ -1,0 +1,31 @@
+# SDHCE hyperparameters
+# Lines starting with # are ignored
+
+input_dim      = 4
+output_dim     = 3
+hidden_dims    = 4,2   
+# comma-separated, one value per hidden layer
+
+
+     
+activation     = silu
+# silu | relu | tanh | sigmoid
+   
+epochs         = 20000
+lr             = 0.01
+tau_percentile = 0          
+# 0 = keep all weights | 60 = keep strongest 40%
+
+task           = classification
+# classification | regression | multilabel   
+
+# For classification / regression — single target column:
+target_col     = last       
+# column index or "last"
+
+
+# For multilabel — multiple target columns (comment out target_col above):
+# target_cols  = last:3     
+# "last:N" = last N columns are labels
+# target_cols  = 4,5,6      
+# or explicit comma-separated column indices

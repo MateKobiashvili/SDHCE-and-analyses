@@ -1,0 +1,97 @@
+=================================================================
+  SDHCE — Symbolic Distillation via Hierarchical Concept Extraction
+  Dataset   : iris.csv
+  Arch      : 4 -> 4 -> 2 -> 3
+  Activation: SILU   |   tau_percentile: 0.0
+=================================================================
+
+  Training accuracy: 100.0%
+
+  INPUT DIMENSIONS:
+    x0 = sepal length (cm)
+    x1 = sepal width (cm)
+    x2 = petal length (cm)
+    x3 = petal width (cm)
+
+-----------------------------------------------------------------
+  LEVEL 1  [ATOMS]
+-----------------------------------------------------------------
+
+  [wide_and_short]  (threshold = -4.604)
+   -> active when:
+      - sepal length (cm)      (contributes 35.2%)
+      + petal width (cm)       (contributes 31.4%)
+      + sepal width (cm)       (contributes 18.0%)
+      - petal length (cm)      (contributes 15.5%)
+
+  [long_wide_petal_AND_long_thin_sepal]  (threshold = -2.515)
+   -> active when:
+      + petal length (cm)      (contributes 35.3%)
+      - sepal width (cm)       (contributes 30.2%)
+      + petal width (cm)       (contributes 27.6%)
+      + sepal length (cm)      (contributes 6.9%)
+
+  [thin_and_long]  (threshold = -0.719)
+   -> active when:
+      - sepal width (cm)       (contributes 42.8%)
+      + sepal length (cm)      (contributes 39.4%)
+      - petal width (cm)       (contributes 11.8%)
+      + petal length (cm)      (contributes 6.0%)
+
+  [long_sepal]  (threshold = -1.377)
+   -> active when:
+      - petal length (cm)      (contributes 45.8%)
+      + sepal length (cm)      (contributes 31.7%)
+      - petal width (cm)       (contributes 11.8%)
+      - sepal width (cm)       (contributes 10.7%)
+
+-----------------------------------------------------------------
+  LEVEL 2  [CONCEPTS]
+-----------------------------------------------------------------
+
+  [generally_long]  (threshold = -1.135)
+   -> active when:
+      + long_wide_petal_AND_long_thin_sepal                   (contributes 79.6%)
+      + thin_and_long                   (contributes 8.3%)
+      - wide_and_short                   (contributes 8.2%)
+      - long_sepal                   (contributes 3.9%)
+
+  [generally_tiny]  (threshold = +0.192)
+   -> active when:
+      - long_sepal                   (contributes 65.8%)
+      - wide_and_short                   (contributes 12.3%)
+      + long_wide_petal_AND_long_thin_sepal                   (contributes 11.1%)
+      - thin_and_long                   (contributes 10.8%)
+
+-----------------------------------------------------------------
+  LEVEL 3  [OUTPUTS]
+-----------------------------------------------------------------
+
+  [0]  (threshold = -7.807)
+   -> active when:
+      - generally_long                   (contributes 92.4%)
+      - generally_tiny                   (contributes 7.6%)
+
+  [1]  (threshold = +7.386)
+   -> active when:
+      - generally_tiny                   (contributes 80.3%)
+      + generally_long                   (contributes 19.7%)
+
+  [2]  (threshold = +7.302)
+   -> active when:
+      + generally_tiny                   (contributes 93.5%)
+      + generally_long                   (contributes 6.5%)
+
+  NOTE: name_hints are placeholders — a human translator assigns real names.
+
+=================================================================
+  VALIDATION: symbolic hierarchy vs original network
+=================================================================
+
+  Original network accuracy :  100.0%
+  Symbolic hierarchy accuracy: 100.0%
+  Agreement with each other  : 100.0%
+
+  No mismatches — perfect agreement on every sample.
+
+=================================================================
