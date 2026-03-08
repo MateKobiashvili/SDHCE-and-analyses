@@ -20,15 +20,22 @@ python sdhce.py dataset.csv hyperparams.txt output.txt --autoname --ollama-url h
 ```
 input_dim      = 4
 output_dim     = 3
-hidden_dims    = 8,4          # comma-separated hidden layer sizes
-activation     = silu         # silu | relu | tanh | sigmoid
+hidden_dims    = 8,4
+# comma-separated hidden layer sizes
+activation     = silu
+# silu | relu | tanh | sigmoid
 epochs         = 2000
 lr             = 0.01
-tau_percentile = 0            # 0 = keep all weights | 60 = keep strongest 40%
-task           = classification   # classification | regression | multilabel
-target_col     = last         # column index or "last" (classification/regression)
-# target_cols  = last:3       # multilabel: last N columns
-# target_cols  = 4,5,6        # multilabel: explicit column indices
+tau_percentile = 0
+# 0 = keep all weights | 60 = keep strongest 40%
+task           = classification
+# classification | regression | multilabel
+target_col     = last
+# column index or "last" (classification/regression)
+# target_cols  = last:3
+# multilabel: last N columns
+# target_cols  = 4,5,6
+# multilabel: explicit column indices
 ```
 
 Lines starting with `#` are ignored. Order does not matter.
