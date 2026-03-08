@@ -4,7 +4,8 @@ Extracts a human-readable concept hierarchy directly from trained neural network
 
 ---
 # LIST OF ANALYZED DATASETS/MODELS 
-``` NAME: N1-IRIS CLASSIFICATION
+```
+    1) IRIS CLASSIFICATION
     MODEL TYPE:  4 -> 4 -> 2 -> 3
     ACTIVATION TYPE: SILU
     FILES: 
