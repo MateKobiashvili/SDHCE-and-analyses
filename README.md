@@ -3,6 +3,20 @@
 Extracts a human-readable concept hierarchy directly from trained neural network weights. No data required after training.
 
 ---
+# LIST OF ANALYZED DATASETS/MODELS 
+``` 1) IRIS CLASSIFICATION
+    MODEL TYPE:  4 -> 4 -> 2 -> 3
+    ACTIVATION TYPE: SILU
+    FILES: 
+    iris.csv #DATASET
+    iris_hyperparams.txt #HYPERPARAMETERS FILE
+    iris_output_analyzed.txt #HUMAN-BASED ANALYSIS DONE ON THE OUTPUT
+    ------
+    TO GENERATE AN OUTPUT.TXT FILE, YOU SHOULD RUN THIS:
+        python sdhce.py iris.csv iris_hyperparams.txt iris_output.txt 
+```
+
+---
 
 ## Usage
 
@@ -11,6 +25,7 @@ python sdhce.py dataset.csv hyperparams.txt output.txt
 python sdhce.py dataset.csv hyperparams.txt output.txt --autoname
 python sdhce.py dataset.csv hyperparams.txt output.txt --autoname --ollama-model llama3.2:3b
 python sdhce.py dataset.csv hyperparams.txt output.txt --autoname --ollama-url http://192.168.1.5:11434/api/chat
+python sdhce.py iris.csv iris_hyperparams.txt iris_output.txt 
 ```
 
 ---
