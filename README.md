@@ -3,19 +3,19 @@
 Extracts a human-readable concept hierarchy directly from trained neural network weights. No data required after training.
 
 ### NEW VERSION!
-# SDHCE CAN NOW DO THE FOLLOWING:
-# 1) AUTONAMING WITH "CONCEPT ARITHMETIC" — terms cancel across layers
-#    (e.g. high_petal_length firing into a negative dep becomes low_petal_length,
-#     and opposing signals for the same feature collapse to nothing)
-# 2) ARBITRARY INTERVAL SCALING — n_intervals=5 auto-generates
-#    low / mid_low1 / mid / mid_high1 / high with no manual naming needed
-# 3) SYMBOLIC DISTILLATION CHECK — verifies that the named concept layer
-#    alone (inputs -> concepts -> output, skipping all intermediate layers)
-#    fully reproduces the network's predictions
-# 4) SYMBOLIC FORMULA OUTPUT — at the end of output.txt, a self-contained
-#    mathematical formula is printed: each concept expanded to raw input
-#    weights, and the output layer expressed over those concepts.
-#    You can implement it by hand and delete the network.
+ SDHCE CAN NOW DO THE FOLLOWING:
+ 1) AUTONAMING WITH "CONCEPT ARITHMETIC" — terms cancel across layers
+    (e.g. high_petal_length firing into a negative dep becomes low_petal_length,
+     and opposing signals for the same feature collapse to nothing)
+ 2) ARBITRARY INTERVAL SCALING — n_intervals=5 auto-generates
+    low / mid_low1 / mid / mid_high1 / high with no manual naming needed
+ 3) SYMBOLIC DISTILLATION CHECK — verifies that the named concept layer
+    alone (inputs -> concepts -> output, skipping all intermediate layers)
+    fully reproduces the network's predictions
+ 4) SYMBOLIC FORMULA OUTPUT — at the end of output.txt, a self-contained
+    mathematical formula is printed: each concept expanded to raw input
+    weights, and the output layer expressed over those concepts.
+    You can implement it by hand and delete the network.
 
 ---
 # LIST OF ANALYZED DATASETS/MODELS
