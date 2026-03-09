@@ -29,3 +29,6 @@ target_col     = last
 # "last:N" = last N columns are labels
 # target_cols  = 4,5,6      
 # or explicit comma-separated column indices
+n_intervals    = 5
+# auto-generates: low, mid_low1, mid, mid_high1, high
+max_deps_in_name = 3
