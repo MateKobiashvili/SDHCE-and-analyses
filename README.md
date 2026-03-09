@@ -29,7 +29,7 @@ Extracts a human-readable concept hierarchy directly from trained neural network
     iris_output_analyzed.txt    # HUMAN-BASED ANALYSIS DONE ON THE OUTPUT
     ------
     TO GENERATE AN OUTPUT.TXT FILE, YOU SHOULD RUN THIS:
-        python sdhce.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
+        python sdhce11.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
 ```
 
 ---
