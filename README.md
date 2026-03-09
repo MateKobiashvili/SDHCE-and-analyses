@@ -31,6 +31,19 @@ Extracts a human-readable concept hierarchy directly from trained neural network
     ------
     TO GENERATE AN OUTPUT.TXT FILE, YOU SHOULD RUN THIS:
         python sdhce11.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
+
+
+    2) WINE RECOGNITION (FROM SKLEARN)
+    MODEL TYPE: 13 -> 8 -> 4 -> 2 -> 3
+    ACTIVATION TYPE: SILU
+    FILES:
+    wine.csv
+    wine_hyperparams1.txt
+    wine_output_autonamed.txt
+    ------
+    TO GENERATE AN OUTPUT.TXT FILE, YOU SHOULD RUN THIS:
+       python sdhce11.py wine.csv wine_hyperparams1.txt wine_output_autonamed.txt --autoname
+
 ```
 
 ---
