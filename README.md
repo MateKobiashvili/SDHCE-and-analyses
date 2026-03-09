@@ -2,19 +2,34 @@
 
 Extracts a human-readable concept hierarchy directly from trained neural network weights. No data required after training.
 
+### NEW VERSION!
+# SDHCE CAN NOW DO THE FOLLOWING:
+# 1) AUTONAMING WITH "CONCEPT ARITHMETIC" — terms cancel across layers
+#    (e.g. high_petal_length firing into a negative dep becomes low_petal_length,
+#     and opposing signals for the same feature collapse to nothing)
+# 2) ARBITRARY INTERVAL SCALING — n_intervals=5 auto-generates
+#    low / mid_low1 / mid / mid_high1 / high with no manual naming needed
+# 3) SYMBOLIC DISTILLATION CHECK — verifies that the named concept layer
+#    alone (inputs -> concepts -> output, skipping all intermediate layers)
+#    fully reproduces the network's predictions
+# 4) SYMBOLIC FORMULA OUTPUT — at the end of output.txt, a self-contained
+#    mathematical formula is printed: each concept expanded to raw input
+#    weights, and the output layer expressed over those concepts.
+#    You can implement it by hand and delete the network.
+
 ---
-# LIST OF ANALYZED DATASETS/MODELS 
+# LIST OF ANALYZED DATASETS/MODELS
 ```
     1) IRIS CLASSIFICATION
     MODEL TYPE:  4 -> 4 -> 2 -> 3
     ACTIVATION TYPE: SILU
-    FILES: 
-    iris.csv #DATASET
-    iris_hyperparams.txt #HYPERPARAMETERS FILE
-    iris_output_analyzed.txt #HUMAN-BASED ANALYSIS DONE ON THE OUTPUT
+    FILES:
+    iris.csv                    # DATASET
+    iris_hyperparams.txt        # HYPERPARAMETERS FILE
+    iris_output_analyzed.txt    # HUMAN-BASED ANALYSIS DONE ON THE OUTPUT
     ------
     TO GENERATE AN OUTPUT.TXT FILE, YOU SHOULD RUN THIS:
-        python sdhce.py iris.csv iris_hyperparams.txt iris_output.txt 
+        python sdhce.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
 ```
 
 ---
@@ -24,10 +39,11 @@ Extracts a human-readable concept hierarchy directly from trained neural network
 ```
 python sdhce.py dataset.csv hyperparams.txt output.txt
 python sdhce.py dataset.csv hyperparams.txt output.txt --autoname
-python sdhce.py dataset.csv hyperparams.txt output.txt --autoname --ollama-model llama3.2:3b
-python sdhce.py dataset.csv hyperparams.txt output.txt --autoname --ollama-url http://192.168.1.5:11434/api/chat
-python sdhce.py iris.csv iris_hyperparams.txt iris_output.txt 
+python sdhce.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
 ```
+
+`--autoname` enables symbolic interval naming (no LLM required). Without it,
+neurons are labelled with placeholders (`C1_0`, `C1_1`, ...) for manual naming.
 
 ---
 
@@ -52,9 +68,42 @@ target_col     = last
 # multilabel: last N columns
 # target_cols  = 4,5,6
 # multilabel: explicit column indices
+n_intervals    = 3
+# number of bins per feature for autoname (default 3)
+# auto-generates labels: 3 -> low/mid/high, 5 -> low/mid_low1/mid/mid_high1/high
+# override with: interval_labels = very_low,low,mid,high,very_high
+max_deps_in_name = 3
+# how many top dependencies to include in each neuron's name (default 3)
 ```
 
 Lines starting with `#` are ignored. Order does not matter.
+
+---
+
+## Interval labels
+
+When `--autoname` is used, each input feature is divided into `n_intervals` bins
+based on training data percentiles. The bin a feature falls into determines the
+label prefix (`low_`, `mid_`, `high_`, etc.) used in neuron names.
+
+| n_intervals | Auto-generated labels |
+|---|---|
+| 2 | low, high |
+| 3 | low, mid, high |
+| 4 | low, mid_low1, mid_high1, high |
+| 5 | low, mid_low1, mid, mid_high1, high |
+| 6 | low, mid_low2, mid_low1, mid_high1, mid_high2, high |
+
+Labels are always symmetric and anchored at `low` / `high`. You can override
+them with `interval_labels = ...` in the hyperparams file.
+
+### Concept arithmetic and term cancellation
+
+When naming deeper neurons, SDHCE expands each dependency all the way back to
+raw input features and sums signed contributions. If the same feature is pulled
+in opposite directions by different paths, the signals cancel and that feature
+is dropped from the name entirely. This means a Level 2 concept name reflects
+the *net* effect on each input — not a concatenation of its deps' names.
 
 ---
 
@@ -90,6 +139,8 @@ Name by the combination that triggers them, not what they output.
 
 **CONCEPTS (Level 2+)** — depend on atoms or other concepts.
 Name by which upstream concepts fire or are suppressed.
+With `--autoname`, names are derived by expanding all paths back to raw inputs
+and cancelling opposing signals before labelling.
 
 **OUTPUTS** — the final prediction nodes. Named by class label automatically.
 
@@ -104,7 +155,7 @@ Name by which upstream concepts fire or are suppressed.
 - Near-zero threshold = fires easily (broad sensor)
 - Negative threshold = fires by default unless suppressed
 
-### Naming tips
+### Naming tips (manual mode)
 
 - Lead with the dominant `+` dep, then note dominant `-` dep
 - `+ petal_length, - sepal_width` → `long_petal_narrow_sepal`
@@ -115,28 +166,43 @@ Name by which upstream concepts fire or are suppressed.
 
 ---
 
-## Autoname (--autoname)
-#NOT RECCOMENDED with <= 3B model size, prompt may need adjusting depending on model
-Requires [Ollama](https://ollama.com/download) running locally.
+## Validation and distillation check
 
-```
-ollama pull llama3.2:3b    # fast, ~2GB, good enough
-ollama pull phi4           # slower, ~9GB, better names
-```
+After extraction, SDHCE runs two checks:
 
+**Validation** — re-evaluates the full symbolic hierarchy on training data and
+compares to the original network.
+- **Agreement 100%** — the hierarchy is a perfect symbolic replica.
+- **Agreement < 100%** — usually floating point noise, < 0.01% disagreement.
 
-Names are generated one neuron at a time in level order — so by the time a concept neuron is named, its atom dependencies already have real names and are passed as context. Duplicate names are automatically suffixed (`_2`, `_3`, etc.).
-
-If Ollama is not running, the script falls back to placeholder names (`C1_0`, `C1_1`, ...) silently.
+**Distillation check** — evaluates *only* the deepest named concept layer:
+inputs → concepts → output, skipping all intermediate layers.
+- **SUCCESS** — the named concepts alone fully reproduce the network.
+  The intermediate layers were just a computational path; the concepts are the
+  complete decision logic.
+- **INCOMPLETE** — intermediate layers carry information not captured in the
+  concept names. Consider increasing `n_intervals`, lowering `tau_percentile`,
+  or adding more hidden layers so concepts form more cleanly.
 
 ---
 
-## Validation
+## Symbolic formula
 
-After extraction, SDHCE re-evaluates the symbolic hierarchy on the training data and compares it to the original network.
+At the end of `output.txt`, a self-contained formula is printed:
 
-- **Agreement 100%** — the hierarchy is a perfect symbolic replica of the network.
-- **Agreement < 100%** — floating point or activation approximation error. Usually < 0.01% disagreement.
-- **RMSE disagreement = 0.0000** for regression — perfect.
+```
+CONCEPTS (inputs -> concept activations):
 
-The symbolic hierarchy can be transcribed into a plain handcrafted program. The network can then be deleted; the knowledge survives in the program.
+  high_petal_length__low_sepal_width__thr+0.76
+    = SILU( (+1.2341)*[petal length] + (-0.8821)*[sepal width] + ... + (+0.756) )
+
+OUTPUT (argmax over classes):
+
+  score[0] = (+3.14)*[concept_0] + (-2.40)*[concept_1] + (+7.457)
+  score[1] = ...
+  prediction = argmax( score[0], score[1], score[2] )
+```
+
+Each concept is fully expanded to raw input weights. The output layer shows the
+concept-to-class mapping. The whole formula can be implemented by hand —
+the trained network can then be deleted. The knowledge survives in the formula.
