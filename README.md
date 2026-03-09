@@ -37,9 +37,9 @@ Extracts a human-readable concept hierarchy directly from trained neural network
 ## Usage
 
 ```
-python sdhce.py dataset.csv hyperparams.txt output.txt
-python sdhce.py dataset.csv hyperparams.txt output.txt --autoname
-python sdhce.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
+python sdhce11.py dataset.csv hyperparams.txt output.txt
+python sdhce11.py dataset.csv hyperparams.txt output.txt --autoname
+python sdhce11.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
 ```
 
 `--autoname` enables symbolic interval naming (no LLM required). Without it,
