@@ -30,7 +30,7 @@ Extracts a human-readable concept hierarchy directly from trained neural network
     iris_output_autonamed.txt   # AUTONAMED AND PREANALYZED FILE
     ------
     TO GENERATE AN OUTPUT.TXT FILE, YOU SHOULD RUN THIS:
-        python sdhce11.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
+        python sdhce16.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
 
 
     2) WINE RECOGNITION (FROM SKLEARN)
@@ -42,7 +42,7 @@ Extracts a human-readable concept hierarchy directly from trained neural network
     wine_output_autonamed.txt
     ------
     TO GENERATE AN OUTPUT.TXT FILE, YOU SHOULD RUN THIS:
-       python sdhce11.py wine.csv wine_hyperparams1.txt wine_output_autonamed.txt --autoname
+       python sdhce16.py wine.csv wine_hyperparams1.txt wine_output_autonamed.txt --autoname
 
 ```
 
@@ -51,9 +51,9 @@ Extracts a human-readable concept hierarchy directly from trained neural network
 ## Usage
 
 ```
-python sdhce11.py dataset.csv hyperparams.txt output.txt
-python sdhce11.py dataset.csv hyperparams.txt output.txt --autoname
-python sdhce11.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
+python sdhce16.py dataset.csv hyperparams.txt output.txt
+python sdhce16.py dataset.csv hyperparams.txt output.txt --autoname
+python sdhce16.py iris.csv iris_hyperparams.txt iris_output.txt --autoname
 ```
 
 `--autoname` enables symbolic interval naming (no LLM required). Without it,
