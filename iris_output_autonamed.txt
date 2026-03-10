@@ -1,5 +1,5 @@
 =================================================================
-  SDHCE — Symbolic Distillation via Hierarchical Concept Extraction
+  SDHCE â€” Symbolic Distillation via Hierarchical Concept Extraction
   Dataset   : iris.csv
   Arch      : 4 -> 4 -> 2 -> 3
   Activation: SILU   |   tau_percentile: 0.0
@@ -18,70 +18,70 @@
   LEVEL 1  [ATOMS]
 -----------------------------------------------------------------
 
-  [low_petal length (cm)__low_petal width (cm)__high_sepal width (cm)__thr+0.63]  (threshold = +0.632)
+  [mid_petal width (cm)(58%)__high_petal length (cm)(21%)__high_sepal length (cm)(11%)__thr+5.29]  (threshold = +5.293)
    -> active when:
-      - petal length (cm)      (contributes 38.3%)
-      - petal width (cm)       (contributes 37.9%)
-      + sepal width (cm)       (contributes 12.3%)
-      - sepal length (cm)      (contributes 11.5%)
+      + petal width (cm)       (contributes 58.4%)
+      - petal length (cm)      (contributes 20.8%)
+      - sepal length (cm)      (contributes 10.8%)
+      - sepal width (cm)       (contributes 10.1%)
 
-  [low_sepal length (cm)__high_sepal width (cm)__low_petal length (cm)__thr-4.22]  (threshold = -4.216)
+  [mid_petal length (cm)(66%)__high_petal width (cm)(17%)__low_sepal width (cm)(9%)__thr+0.13]  (threshold = +0.125)
    -> active when:
-      - sepal length (cm)      (contributes 38.3%)
-      + sepal width (cm)       (contributes 35.4%)
-      - petal length (cm)      (contributes 21.1%)
-      - petal width (cm)       (contributes 5.2%)
+      - petal length (cm)      (contributes 65.8%)
+      - petal width (cm)       (contributes 17.4%)
+      + sepal width (cm)       (contributes 8.7%)
+      - sepal length (cm)      (contributes 8.0%)
 
-  [high_petal length (cm)__high_petal width (cm)__low_sepal length (cm)__thr+1.59]  (threshold = +1.586)
+  [mid_petal width (cm)(44%)__high_sepal width (cm)(21%)__low_sepal length (cm)(20%)__thr-1.82]  (threshold = -1.816)
    -> active when:
-      + petal length (cm)      (contributes 61.7%)
-      + petal width (cm)       (contributes 19.7%)
-      - sepal length (cm)      (contributes 18.2%)
-      - sepal width (cm)       (contributes 0.4%)
+      + petal width (cm)       (contributes 44.5%)
+      - sepal width (cm)       (contributes 21.4%)
+      + sepal length (cm)      (contributes 20.1%)
+      + petal length (cm)      (contributes 14.1%)
 
-  [high_petal length (cm)__low_sepal length (cm)__high_sepal width (cm)__thr+7.23]  (threshold = +7.227)
+  [high_petal length (cm)(80%)__high_petal width (cm)(8%)__high_sepal width (cm)(8%)__thr+2.18]  (threshold = +2.184)
    -> active when:
-      + petal length (cm)      (contributes 45.2%)
-      - sepal length (cm)      (contributes 44.0%)
-      + sepal width (cm)       (contributes 5.5%)
-      + petal width (cm)       (contributes 5.2%)
+      + petal length (cm)      (contributes 79.5%)
+      - petal width (cm)       (contributes 8.2%)
+      - sepal width (cm)       (contributes 7.5%)
+      + sepal length (cm)      (contributes 4.8%)
 
 -----------------------------------------------------------------
   LEVEL 2  [CONCEPTS]
 -----------------------------------------------------------------
 
-  [low_petal width (cm)__low_sepal length (cm)__low_petal length (cm)__thr+1.10]  (threshold = +1.104)
+  [mid_petal width (cm)(65%)__low_sepal length (cm)(15%)__low_sepal width (cm)(12%)__thr-1.26]  (threshold = -1.261)
    -> active when:
-      + low_petal length (cm)__low_petal width (cm)__high_sepal width (cm)__thr+0.63 (contributes 88.0%)
-      + high_petal length (cm)__low_sepal length (cm)__high_sepal width (cm)__thr+7.23 (contributes 9.0%)
-      + low_sepal length (cm)__high_sepal width (cm)__low_petal length (cm)__thr-4.22 (contributes 1.9%)
-      - high_petal length (cm)__high_petal width (cm)__low_sepal length (cm)__thr+1.59 (contributes 1.1%)
+      - mid_petal width (cm)(58%)__high_petal length (cm)(21%)__high_sepal length (cm)(11%)__thr+5.29 (contributes 40.0%)
+      - high_petal length (cm)(80%)__high_petal width (cm)(8%)__high_sepal width (cm)(8%)__thr+2.18 (contributes 24.8%)
+      + mid_petal width (cm)(44%)__high_sepal width (cm)(21%)__low_sepal length (cm)(20%)__thr-1.82 (contributes 21.6%)
+      - mid_petal length (cm)(66%)__high_petal width (cm)(17%)__low_sepal width (cm)(9%)__thr+0.13 (contributes 13.6%)
 
-  [high_petal length (cm)__low_sepal length (cm)__low_sepal width (cm)__thr+4.84]  (threshold = +4.835)
+  [mid_petal width (cm)(64%)__high_sepal width (cm)(12%)__high_petal length (cm)(12%)__thr+1.66]  (threshold = +1.663)
    -> active when:
-      + high_petal length (cm)__low_sepal length (cm)__high_sepal width (cm)__thr+7.23 (contributes 57.7%)
-      - low_sepal length (cm)__high_sepal width (cm)__low_petal length (cm)__thr-4.22 (contributes 30.5%)
-      + high_petal length (cm)__high_petal width (cm)__low_sepal length (cm)__thr+1.59 (contributes 9.1%)
-      + low_petal length (cm)__low_petal width (cm)__high_sepal width (cm)__thr+0.63 (contributes 2.7%)
+      + mid_petal width (cm)(58%)__high_petal length (cm)(21%)__high_sepal length (cm)(11%)__thr+5.29 (contributes 69.7%)
+      + high_petal length (cm)(80%)__high_petal width (cm)(8%)__high_sepal width (cm)(8%)__thr+2.18 (contributes 24.5%)
+      - mid_petal width (cm)(44%)__high_sepal width (cm)(21%)__low_sepal length (cm)(20%)__thr-1.82 (contributes 4.4%)
+      + mid_petal length (cm)(66%)__high_petal width (cm)(17%)__low_sepal width (cm)(9%)__thr+0.13 (contributes 1.3%)
 
 -----------------------------------------------------------------
   LEVEL 3  [OUTPUTS]
 -----------------------------------------------------------------
 
-  [0]  (threshold = +4.831)
+  [0]  (threshold = -6.451)
    -> active when:
-      + low_petal width (cm)__low_sepal length (cm)__low_petal length (cm)__thr+1.10 (contributes 67.9%)
-      - high_petal length (cm)__low_sepal length (cm)__low_sepal width (cm)__thr+4.84 (contributes 32.1%)
+      - mid_petal width (cm)(64%)__high_sepal width (cm)(12%)__high_petal length (cm)(12%)__thr+1.66 (contributes 64.5%)
+      - mid_petal width (cm)(65%)__low_sepal length (cm)(15%)__low_sepal width (cm)(12%)__thr-1.26 (contributes 35.5%)
 
-  [1]  (threshold = -8.404)
+  [1]  (threshold = +7.484)
    -> active when:
-      - high_petal length (cm)__low_sepal length (cm)__low_sepal width (cm)__thr+4.84 (contributes 56.3%)
-      - low_petal width (cm)__low_sepal length (cm)__low_petal length (cm)__thr+1.10 (contributes 43.7%)
+      + mid_petal width (cm)(65%)__low_sepal length (cm)(15%)__low_sepal width (cm)(12%)__thr-1.26 (contributes 53.9%)
+      - mid_petal width (cm)(64%)__high_sepal width (cm)(12%)__high_petal length (cm)(12%)__thr+1.66 (contributes 46.1%)
 
-  [2]  (threshold = +6.001)
+  [2]  (threshold = +5.234)
    -> active when:
-      + high_petal length (cm)__low_sepal length (cm)__low_sepal width (cm)__thr+4.84 (contributes 99.1%)
-      - low_petal width (cm)__low_sepal length (cm)__low_petal length (cm)__thr+1.10 (contributes 0.9%)
+      + mid_petal width (cm)(64%)__high_sepal width (cm)(12%)__high_petal length (cm)(12%)__thr+1.66 (contributes 96.5%)
+      + mid_petal width (cm)(65%)__low_sepal length (cm)(15%)__low_sepal width (cm)(12%)__thr-1.26 (contributes 3.5%)
 
 =================================================================
   VALIDATION: symbolic hierarchy vs original network
@@ -91,7 +91,7 @@
   Symbolic hierarchy accuracy: 100.0%
   Agreement with each other  : 100.0%
 
-  No mismatches — perfect agreement on every sample.
+  No mismatches â€” perfect agreement on every sample.
 
 =================================================================
   DISTILLATION CHECK: concept layer -> output (no intermediate layers)
@@ -101,26 +101,5 @@
   Agreement with full network: 100.0%
 
   SUCCESS: named concepts fully reproduce the network.
-
-=================================================================
-=================================================================
-  SYMBOLIC FORMULA (distilled)
-=================================================================
-
-  CONCEPTS (inputs -> concept activations):
-
-  low_petal width (cm)__low_sepal length (cm)__low_petal length (cm)__thr+1.10
-    = SILU( (-2.3071)*[petal width (cm)] + (-2.0792)*[sepal length (cm)] + (-1.3693)*[petal length (cm)] + (+1.0937)*[sepal width (cm)] + (-1.1041) )
-
-  high_petal length (cm)__low_sepal length (cm)__low_sepal width (cm)__thr+4.84
-    = SILU( (+267.9435)*[petal length (cm)] + (-137.0423)*[sepal length (cm)] + (-42.3207)*[sepal width (cm)] + (+38.1886)*[petal width (cm)] + (-4.8354) )
-
-  OUTPUT (argmax over classes):
-
-  score[0] = (+3.4635)*[low_petal width (cm)__low_sepal length (cm)__low_petal length (cm)__thr+1.10] + (-1.6385)*[high_petal length (cm)__low_sepal length (cm)__low_sepal width (cm)__thr+4.84] + (-4.8308)
-  score[1] = (-9.8526)*[high_petal length (cm)__low_sepal length (cm)__low_sepal width (cm)__thr+4.84] + (-7.6550)*[low_petal width (cm)__low_sepal length (cm)__low_petal length (cm)__thr+1.10] + (+8.4044)
-  score[2] = (+9.0465)*[high_petal length (cm)__low_sepal length (cm)__low_sepal width (cm)__thr+4.84] + (-0.0850)*[low_petal width (cm)__low_sepal length (cm)__low_petal length (cm)__thr+1.10] + (-6.0008)
-
-  prediction = argmax( score[0], score[1], score[2] )
 
 =================================================================
