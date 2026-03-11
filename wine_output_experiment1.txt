@@ -1,0 +1,262 @@
+=================================================================
+  SDHCE — Symbolic Distillation via Hierarchical Concept Extraction
+  Dataset   : wine.csv
+  Arch      : 13 -> 8 -> 4 -> 2 -> 3
+  Activation: SILU   |   tau_percentile: 0.0
+  Autoname  : symbolic intervals=5 labels=low,mid_low1,mid,mid_high1,high max_deps=3
+=================================================================
+
+  Training accuracy: 100.0%
+
+  INPUT DIMENSIONS:
+    x0 = alcohol
+    x1 = malic_acid
+    x2 = ash
+    x3 = alcalinity_of_ash
+    x4 = magnesium
+    x5 = total_phenols
+    x6 = flavanoids
+    x7 = nonflavanoid_phenols
+    x8 = proanthocyanins
+    x9 = color_intensity
+    x10 = hue
+    x11 = od280/od315_of_diluted_wines
+    x12 = proline
+
+-----------------------------------------------------------------
+  LEVEL 1  [ATOMS]
+-----------------------------------------------------------------
+
+  [mid_high1_flavanoids(37%)__mid_low1_total_phenols(21%)__high_proline(14%)__thr-0.65]  (threshold = -0.651)
+   -> active when:
+      - flavanoids             (contributes 36.6%)
+      + total_phenols          (contributes 21.4%)
+      - proline                (contributes 13.5%)
+      + nonflavanoid_phenols   (contributes 5.4%)
+      + alcalinity_of_ash      (contributes 5.3%)
+      - alcohol                (contributes 4.1%)
+      + color_intensity        (contributes 3.5%)
+      + proanthocyanins        (contributes 3.1%)
+      - ash                    (contributes 2.4%)
+      + hue                    (contributes 2.1%)
+      + malic_acid             (contributes 1.9%)
+      + magnesium              (contributes 0.7%)
+      - od280/od315_of_diluted_wines (contributes 0.1%)
+
+  [high_od280/od315_of_diluted_wines(19%)__high_flavanoids(19%)__low_proline(15%)__thr-0.88]  (threshold = -0.882)
+   -> active when:
+      - od280/od315_of_diluted_wines (contributes 18.7%)
+      - flavanoids             (contributes 18.7%)
+      + proline                (contributes 14.6%)
+      + color_intensity        (contributes 14.3%)
+      - nonflavanoid_phenols   (contributes 11.1%)
+      - proanthocyanins        (contributes 9.0%)
+      - malic_acid             (contributes 3.3%)
+      + alcalinity_of_ash      (contributes 3.2%)
+      + alcohol                (contributes 2.4%)
+      + magnesium              (contributes 1.8%)
+      + total_phenols          (contributes 1.4%)
+      - ash                    (contributes 1.0%)
+      - hue                    (contributes 0.5%)
+
+  [low_hue(16%)__high_alcalinity_of_ash(11%)__low_od280/od315_of_diluted_wines(11%)__thr-1.23]  (threshold = -1.234)
+   -> active when:
+      + hue                    (contributes 16.1%)
+      - alcalinity_of_ash      (contributes 11.2%)
+      + od280/od315_of_diluted_wines (contributes 11.1%)
+      + flavanoids             (contributes 9.8%)
+      + proline                (contributes 8.7%)
+      + malic_acid             (contributes 8.0%)
+      + total_phenols          (contributes 7.8%)
+      + alcohol                (contributes 7.2%)
+      - nonflavanoid_phenols   (contributes 5.7%)
+      + magnesium              (contributes 4.8%)
+      + ash                    (contributes 3.5%)
+      - color_intensity        (contributes 3.3%)
+      - proanthocyanins        (contributes 2.8%)
+
+  [low_proline(13%)__low_total_phenols(11%)__low_hue(11%)__thr-1.07]  (threshold = -1.074)
+   -> active when:
+      + proline                (contributes 13.0%)
+      + total_phenols          (contributes 11.0%)
+      + hue                    (contributes 10.8%)
+      + alcohol                (contributes 10.5%)
+      - alcalinity_of_ash      (contributes 10.1%)
+      + flavanoids             (contributes 9.9%)
+      + od280/od315_of_diluted_wines (contributes 7.8%)
+      - color_intensity        (contributes 6.7%)
+      + ash                    (contributes 6.7%)
+      + magnesium              (contributes 5.0%)
+      - proanthocyanins        (contributes 4.1%)
+      - nonflavanoid_phenols   (contributes 3.5%)
+      + malic_acid             (contributes 0.9%)
+
+  [low_proline(10%)__low_flavanoids(10%)__high_alcalinity_of_ash(9%)__thr-1.95]  (threshold = -1.947)
+   -> active when:
+      + proline                (contributes 10.1%)
+      + flavanoids             (contributes 9.5%)
+      - alcalinity_of_ash      (contributes 9.4%)
+      - nonflavanoid_phenols   (contributes 9.3%)
+      + od280/od315_of_diluted_wines (contributes 9.3%)
+      + total_phenols          (contributes 8.4%)
+      + hue                    (contributes 8.2%)
+      - color_intensity        (contributes 8.1%)
+      + ash                    (contributes 7.3%)
+      + alcohol                (contributes 6.7%)
+      + malic_acid             (contributes 5.7%)
+      + magnesium              (contributes 5.5%)
+      - proanthocyanins        (contributes 2.6%)
+
+  [high_color_intensity(17%)__high_ash(15%)__low_hue(15%)__thr-0.79]  (threshold = -0.786)
+   -> active when:
+      - color_intensity        (contributes 17.3%)
+      - ash                    (contributes 15.2%)
+      + hue                    (contributes 14.6%)
+      - proline                (contributes 12.5%)
+      + flavanoids             (contributes 11.7%)
+      - alcohol                (contributes 9.3%)
+      + alcalinity_of_ash      (contributes 8.0%)
+      + nonflavanoid_phenols   (contributes 3.4%)
+      - total_phenols          (contributes 3.3%)
+      + proanthocyanins        (contributes 1.9%)
+      - malic_acid             (contributes 1.6%)
+      - od280/od315_of_diluted_wines (contributes 1.1%)
+      - magnesium              (contributes 0.1%)
+
+  [high_od280/od315_of_diluted_wines(16%)__low_alcalinity_of_ash(15%)__high_proanthocyanins(13%)__thr+0.07]  (threshold = +0.073)
+   -> active when:
+      - od280/od315_of_diluted_wines (contributes 16.4%)
+      + alcalinity_of_ash      (contributes 15.4%)
+      - proanthocyanins        (contributes 12.5%)
+      + total_phenols          (contributes 12.0%)
+      - ash                    (contributes 10.3%)
+      + color_intensity        (contributes 9.2%)
+      - malic_acid             (contributes 7.4%)
+      - flavanoids             (contributes 5.5%)
+      + magnesium              (contributes 4.1%)
+      - nonflavanoid_phenols   (contributes 2.1%)
+      - hue                    (contributes 1.9%)
+      + alcohol                (contributes 1.7%)
+      + proline                (contributes 1.6%)
+
+  [low_hue(16%)__low_alcalinity_of_ash(15%)__high_nonflavanoid_phenols(11%)__thr+0.61]  (threshold = +0.615)
+   -> active when:
+      + hue                    (contributes 16.4%)
+      + alcalinity_of_ash      (contributes 15.1%)
+      - nonflavanoid_phenols   (contributes 11.4%)
+      - alcohol                (contributes 9.9%)
+      + proanthocyanins        (contributes 9.3%)
+      - proline                (contributes 8.4%)
+      + flavanoids             (contributes 7.9%)
+      + total_phenols          (contributes 7.3%)
+      - ash                    (contributes 7.1%)
+      - color_intensity        (contributes 3.6%)
+      + magnesium              (contributes 2.4%)
+      + od280/od315_of_diluted_wines (contributes 0.8%)
+      + malic_acid             (contributes 0.6%)
+
+-----------------------------------------------------------------
+  LEVEL 2  [CONCEPTS]
+-----------------------------------------------------------------
+
+  [mid_low1_color_intensity(26%)__low_alcalinity_of_ash(18%)__high_od280/od315_of_diluted_wines(13%)__thr-0.40]  (threshold = -0.398)
+   -> active when:
+      - mid_high1_flavanoids(37%)__mid_low1_total_phenols(21%)__high_proline(14%)__thr-0.65 (contributes 20.2%)
+      - low_proline(10%)__low_flavanoids(10%)__high_alcalinity_of_ash(9%)__thr-1.95 (contributes 16.4%)
+      + low_hue(16%)__high_alcalinity_of_ash(11%)__low_od280/od315_of_diluted_wines(11%)__thr-1.23 (contributes 15.4%)
+      + high_od280/od315_of_diluted_wines(16%)__low_alcalinity_of_ash(15%)__high_proanthocyanins(13%)__thr+0.07 (contributes 12.3%)
+      - low_proline(13%)__low_total_phenols(11%)__low_hue(11%)__thr-1.07 (contributes 12.2%)
+      + low_hue(16%)__low_alcalinity_of_ash(15%)__high_nonflavanoid_phenols(11%)__thr+0.61 (contributes 11.9%)
+      - high_color_intensity(17%)__high_ash(15%)__low_hue(15%)__thr-0.79 (contributes 11.3%)
+      + high_od280/od315_of_diluted_wines(19%)__high_flavanoids(19%)__low_proline(15%)__thr-0.88 (contributes 0.4%)
+
+  [mid_low1_color_intensity(24%)__high_flavanoids(18%)__low_proanthocyanins(13%)__thr-0.05]  (threshold = -0.050)
+   -> active when:
+      - low_proline(10%)__low_flavanoids(10%)__high_alcalinity_of_ash(9%)__thr-1.95 (contributes 22.4%)
+      + low_hue(16%)__high_alcalinity_of_ash(11%)__low_od280/od315_of_diluted_wines(11%)__thr-1.23 (contributes 20.2%)
+      - high_od280/od315_of_diluted_wines(16%)__low_alcalinity_of_ash(15%)__high_proanthocyanins(13%)__thr+0.07 (contributes 18.3%)
+      - high_color_intensity(17%)__high_ash(15%)__low_hue(15%)__thr-0.79 (contributes 13.8%)
+      + low_hue(16%)__low_alcalinity_of_ash(15%)__high_nonflavanoid_phenols(11%)__thr+0.61 (contributes 9.7%)
+      + high_od280/od315_of_diluted_wines(19%)__high_flavanoids(19%)__low_proline(15%)__thr-0.88 (contributes 7.6%)
+      + mid_high1_flavanoids(37%)__mid_low1_total_phenols(21%)__high_proline(14%)__thr-0.65 (contributes 7.5%)
+      - low_proline(13%)__low_total_phenols(11%)__low_hue(11%)__thr-1.07 (contributes 0.5%)
+
+  [mid_low1_color_intensity(22%)__high_flavanoids(18%)__low_malic_acid(11%)__thr-0.64]  (threshold = -0.642)
+   -> active when:
+      + low_hue(16%)__high_alcalinity_of_ash(11%)__low_od280/od315_of_diluted_wines(11%)__thr-1.23 (contributes 30.7%)
+      - low_proline(13%)__low_total_phenols(11%)__low_hue(11%)__thr-1.07 (contributes 15.2%)
+      - high_color_intensity(17%)__high_ash(15%)__low_hue(15%)__thr-0.79 (contributes 14.9%)
+      + mid_high1_flavanoids(37%)__mid_low1_total_phenols(21%)__high_proline(14%)__thr-0.65 (contributes 13.0%)
+      - low_proline(10%)__low_flavanoids(10%)__high_alcalinity_of_ash(9%)__thr-1.95 (contributes 12.9%)
+      + high_od280/od315_of_diluted_wines(19%)__high_flavanoids(19%)__low_proline(15%)__thr-0.88 (contributes 5.7%)
+      - high_od280/od315_of_diluted_wines(16%)__low_alcalinity_of_ash(15%)__high_proanthocyanins(13%)__thr+0.07 (contributes 4.4%)
+      + low_hue(16%)__low_alcalinity_of_ash(15%)__high_nonflavanoid_phenols(11%)__thr+0.61 (contributes 3.1%)
+
+  [high_alcalinity_of_ash(20%)__low_proline(17%)__low_ash(14%)__thr-0.59]  (threshold = -0.590)
+   -> active when:
+      - low_hue(16%)__low_alcalinity_of_ash(15%)__high_nonflavanoid_phenols(11%)__thr+0.61 (contributes 21.4%)
+      - high_color_intensity(17%)__high_ash(15%)__low_hue(15%)__thr-0.79 (contributes 18.2%)
+      + low_proline(13%)__low_total_phenols(11%)__low_hue(11%)__thr-1.07 (contributes 14.1%)
+      + low_hue(16%)__high_alcalinity_of_ash(11%)__low_od280/od315_of_diluted_wines(11%)__thr-1.23 (contributes 13.3%)
+      - high_od280/od315_of_diluted_wines(16%)__low_alcalinity_of_ash(15%)__high_proanthocyanins(13%)__thr+0.07 (contributes 12.1%)
+      + low_proline(10%)__low_flavanoids(10%)__high_alcalinity_of_ash(9%)__thr-1.95 (contributes 11.5%)
+      - mid_high1_flavanoids(37%)__mid_low1_total_phenols(21%)__high_proline(14%)__thr-0.65 (contributes 9.0%)
+      + high_od280/od315_of_diluted_wines(19%)__high_flavanoids(19%)__low_proline(15%)__thr-0.88 (contributes 0.4%)
+
+-----------------------------------------------------------------
+  LEVEL 3  [CONCEPTS]
+-----------------------------------------------------------------
+
+  [mid_high1_color_intensity(26%)__low_flavanoids(14%)__high_alcalinity_of_ash(11%)__thr-4.00]  (threshold = -3.997)
+   -> active when:
+      - mid_low1_color_intensity(26%)__low_alcalinity_of_ash(18%)__high_od280/od315_of_diluted_wines(13%)__thr-0.40 (contributes 38.6%)
+      - mid_low1_color_intensity(22%)__high_flavanoids(18%)__low_malic_acid(11%)__thr-0.64 (contributes 34.3%)
+      - mid_low1_color_intensity(24%)__high_flavanoids(18%)__low_proanthocyanins(13%)__thr-0.05 (contributes 21.9%)
+      + high_alcalinity_of_ash(20%)__low_proline(17%)__low_ash(14%)__thr-0.59 (contributes 5.2%)
+
+  [high_alcalinity_of_ash(20%)__low_proline(17%)__low_ash(15%)__thr+0.29]  (threshold = +0.287)
+   -> active when:
+      + high_alcalinity_of_ash(20%)__low_proline(17%)__low_ash(14%)__thr-0.59 (contributes 63.0%)
+      + mid_low1_color_intensity(24%)__high_flavanoids(18%)__low_proanthocyanins(13%)__thr-0.05 (contributes 14.9%)
+      - mid_low1_color_intensity(22%)__high_flavanoids(18%)__low_malic_acid(11%)__thr-0.64 (contributes 14.4%)
+      - mid_low1_color_intensity(26%)__low_alcalinity_of_ash(18%)__high_od280/od315_of_diluted_wines(13%)__thr-0.40 (contributes 7.8%)
+
+-----------------------------------------------------------------
+  LEVEL 4  [OUTPUTS]
+-----------------------------------------------------------------
+
+  [0]  (threshold = +3.508)
+   -> active when:
+      + high_alcalinity_of_ash(20%)__low_proline(17%)__low_ash(15%)__thr+0.29 (contributes 84.1%)
+      - mid_high1_color_intensity(26%)__low_flavanoids(14%)__high_alcalinity_of_ash(11%)__thr-4.00 (contributes 15.9%)
+
+  [1]  (threshold = +3.815)
+   -> active when:
+      + mid_high1_color_intensity(26%)__low_flavanoids(14%)__high_alcalinity_of_ash(11%)__thr-4.00 (contributes 74.3%)
+      + high_alcalinity_of_ash(20%)__low_proline(17%)__low_ash(15%)__thr+0.29 (contributes 25.7%)
+
+  [2]  (threshold = -5.499)
+   -> active when:
+      - mid_high1_color_intensity(26%)__low_flavanoids(14%)__high_alcalinity_of_ash(11%)__thr-4.00 (contributes 51.3%)
+      - high_alcalinity_of_ash(20%)__low_proline(17%)__low_ash(15%)__thr+0.29 (contributes 48.7%)
+
+=================================================================
+  VALIDATION: symbolic hierarchy vs original network
+=================================================================
+
+  Original network accuracy :  100.0%
+  Symbolic hierarchy accuracy: 100.0%
+  Agreement with each other  : 100.0%
+
+  No mismatches — perfect agreement on every sample.
+
+=================================================================
+  DISTILLATION CHECK: concept layer -> output (no intermediate layers)
+=================================================================
+
+  Concept-only accuracy      : 100.0%
+  Agreement with full network: 100.0%
+
+  SUCCESS: named concepts fully reproduce the network.
+
+=================================================================
